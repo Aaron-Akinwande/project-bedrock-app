@@ -16,13 +16,15 @@ module "vpc" {
   vpc_name = "project-bedrock-vpc"
 
   public_subnet_tags = {
-    "kubernetes.io/cluster/${var.environment_name}" = "shared"
-    "kubernetes.io/role/elb"                        = 1
+    "kubernetes.io/cluster/${var.environment_name}"  = "shared"
+    "kubernetes.io/cluster/project-bedrock-cluster"  = "shared"
+    "kubernetes.io/role/elb"                         = 1
   }
 
   private_subnet_tags = {
-    "kubernetes.io/cluster/${var.environment_name}" = "shared"
-    "kubernetes.io/role/internal-elb"               = 1
+    "kubernetes.io/cluster/${var.environment_name}"  = "shared"
+    "kubernetes.io/cluster/project-bedrock-cluster"  = "shared"
+    "kubernetes.io/role/internal-elb"                = 1
   }
 
   tags = module.tags.result

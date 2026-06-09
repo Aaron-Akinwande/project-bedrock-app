@@ -215,7 +215,10 @@ resource "kubernetes_namespace_v1" "ui" {
   }
 }
 
-resource "helm_release" "ui" {`n  timeout = 600
+
+
+resource "helm_release" "ui" {
+  timeout = 600
   depends_on = [
     helm_release.catalog,
     helm_release.carts,
@@ -240,33 +243,3 @@ resource "helm_release" "ui" {`n  timeout = 600
   ]
 }
 
-resource "time_sleep" "restart_pods" {
-  triggers = {
-    opentelemetry_enabled = var.opentelemetry_enabled
-  }
-
-  create_duration = "30s"
-
-  depends_on = [
-    helm_release.ui
-  ]
-}
-
-resource "null_resource" "restart_pods" {
-  depends_on = [time_sleep.restart_pods]
-
-  triggers = {
-    opentelemetry_enabled = var.opentelemetry_enabled
-  }
-
-  provisioner "local-exec" {
-    interpreter = ["/bin/bash", "-c"]
-    environment = {
-      KUBECONFIG = base64encode(local.kubeconfig)
-    }
-
-    command = <<-EOT
-      kubectl delete pod -A -l app.kubernetes.io/owner=retail-store-sample --kubeconfig <(echo $KUBECONFIG | base64 -d)
-    EOT
-  }
-}
