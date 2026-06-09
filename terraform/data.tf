@@ -15,6 +15,6 @@ data "kubernetes_service" "ui_service" {
 
   metadata {
     name      = "ui"
-    namespace = "ui"
+    namespace = "retail-app"
   }
 }

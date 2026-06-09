@@ -84,7 +84,7 @@ resource "helm_release" "catalog" {
   name  = "catalog"
   chart = "../src/catalog/chart"
 
-  namespace = kubernetes_namespace_v1.catalog.metadata[0].name
+  namespace = "retail-app"
 
   values = [
     templatefile("${path.module}/values/catalog.yaml", {
@@ -121,7 +121,7 @@ resource "helm_release" "carts" {
   name  = "carts"
   chart = "../src/cart/chart"
 
-  namespace = kubernetes_namespace_v1.carts.metadata[0].name
+  namespace = "retail-app"
 
   values = [
     templatefile("${path.module}/values/carts.yaml", {
@@ -151,7 +151,7 @@ resource "helm_release" "checkout" {
   name  = "checkout"
   chart = "../src/checkout/chart"
 
-  namespace = kubernetes_namespace_v1.checkout.metadata[0].name
+  namespace = "retail-app"
 
   values = [
     templatefile("${path.module}/values/checkout.yaml", {
@@ -182,7 +182,7 @@ resource "helm_release" "orders" {
   name  = "orders"
   chart = "../src/orders/chart"
 
-  namespace = kubernetes_namespace_v1.orders.metadata[0].name
+  namespace = "retail-app"
 
   values = [
     templatefile("${path.module}/values/orders.yaml", {
@@ -229,7 +229,7 @@ resource "helm_release" "ui" {
   name  = "ui"
   chart = "../src/ui/chart"
 
-  namespace = kubernetes_namespace_v1.ui.metadata[0].name
+  namespace = "retail-app"
 
   values = [
     templatefile("${path.module}/values/ui.yaml", {
