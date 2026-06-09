@@ -82,7 +82,7 @@ resource "kubernetes_namespace_v1" "catalog" {
 
 resource "helm_release" "catalog" {
   name  = "catalog"
-  chart = "../../src/catalog/chart"
+  chart = "../src/catalog/chart"
 
   namespace = kubernetes_namespace_v1.catalog.metadata[0].name
 
@@ -119,7 +119,7 @@ resource "kubernetes_namespace_v1" "carts" {
 
 resource "helm_release" "carts" {
   name  = "carts"
-  chart = "../../src/cart/chart"
+  chart = "../src/cart/chart"
 
   namespace = kubernetes_namespace_v1.carts.metadata[0].name
 
@@ -149,7 +149,7 @@ resource "kubernetes_namespace_v1" "checkout" {
 
 resource "helm_release" "checkout" {
   name  = "checkout"
-  chart = "../../src/checkout/chart"
+  chart = "../src/checkout/chart"
 
   namespace = kubernetes_namespace_v1.checkout.metadata[0].name
 
@@ -180,7 +180,7 @@ resource "kubernetes_namespace_v1" "orders" {
 
 resource "helm_release" "orders" {
   name  = "orders"
-  chart = "../../src/orders/chart"
+  chart = "../src/orders/chart"
 
   namespace = kubernetes_namespace_v1.orders.metadata[0].name
 
@@ -215,7 +215,7 @@ resource "kubernetes_namespace_v1" "ui" {
   }
 }
 
-resource "helm_release" "ui" {
+resource "helm_release" "ui" {`n  timeout = 600
   depends_on = [
     helm_release.catalog,
     helm_release.carts,
@@ -224,7 +224,7 @@ resource "helm_release" "ui" {
   ]
 
   name  = "ui"
-  chart = "../../src/ui/chart"
+  chart = "../src/ui/chart"
 
   namespace = kubernetes_namespace_v1.ui.metadata[0].name
 

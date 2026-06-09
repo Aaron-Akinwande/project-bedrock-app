@@ -39,7 +39,7 @@ module "catalog_opensearch" {
   engine_version = "OpenSearch_3.3"
 
   cluster_config = {
-    instance_type            = "r8g.medium.search"
+    instance_type            = "t3.small.search"
     instance_count           = 1
     zone_awareness_enabled   = false
     dedicated_master_enabled = false

@@ -1,151 +1,122 @@
 output "catalog_db_endpoint" {
-  description = "Writer endpoint for the catalog database"
-  value       = module.catalog_rds.cluster_endpoint
+  value = aws_db_instance.catalog.address
 }
 
 output "catalog_db_database_name" {
-  description = "Database name for the catalog database"
-  value       = module.catalog_rds.cluster_database_name
+  value = aws_db_instance.catalog.db_name
 }
 
 output "catalog_db_master_password" {
-  description = "Master password for the catalog database"
-  value       = module.catalog_rds.cluster_master_password
-  sensitive   = true
+  value     = aws_db_instance.catalog.password
+  sensitive = true
 }
 
 output "catalog_db_master_username" {
-  description = "Master username for the catalog database"
-  value       = module.catalog_rds.cluster_master_username
-  sensitive   = true
+  value     = aws_db_instance.catalog.username
+  sensitive = true
 }
 
 output "catalog_db_port" {
-  description = "Port for the catalog database"
-  value       = module.catalog_rds.cluster_port
+  value = aws_db_instance.catalog.port
 }
 
 output "catalog_db_reader_endpoint" {
-  description = "A read-only endpoint for the catalog database"
-  value       = module.catalog_rds.cluster_reader_endpoint
+  value = aws_db_instance.catalog.address
 }
 
 output "catalog_db_arn" {
-  description = "ARN for the catalog database"
-  value       = module.catalog_rds.cluster_arn
+  value = aws_db_instance.catalog.arn
 }
 
 output "orders_db_endpoint" {
-  description = "Writer endpoint for the orders database"
-  value       = module.orders_rds.cluster_endpoint
+  value = aws_db_instance.orders.address
 }
 
 output "orders_db_database_name" {
-  description = "Database name for the orders database"
-  value       = module.orders_rds.cluster_database_name
+  value = aws_db_instance.orders.db_name
 }
 
 output "orders_db_master_password" {
-  description = "Master password for the orders database"
-  value       = module.orders_rds.cluster_master_password
-  sensitive   = true
+  value     = aws_db_instance.orders.password
+  sensitive = true
 }
 
 output "orders_db_master_username" {
-  description = "Master username for the orders database"
-  value       = module.orders_rds.cluster_master_username
-  sensitive   = true
+  value     = aws_db_instance.orders.username
+  sensitive = true
 }
 
 output "orders_db_port" {
-  description = "Port for the orders database"
-  value       = module.orders_rds.cluster_port
+  value = aws_db_instance.orders.port
 }
 
 output "orders_db_reader_endpoint" {
-  description = "Read-only endpoint for the orders database"
-  value       = module.orders_rds.cluster_reader_endpoint
+  value = aws_db_instance.orders.address
 }
 
 output "orders_db_arn" {
-  description = "ARN for the orders database"
-  value       = module.orders_rds.cluster_arn
+  value = aws_db_instance.orders.arn
 }
 
 output "carts_dynamodb_table_arn" {
-  description = "ARN of the carts DynamoDB table"
-  value       = module.dynamodb_carts.dynamodb_table_arn
+  value = module.dynamodb_carts.dynamodb_table_arn
 }
 
 output "carts_dynamodb_table_name" {
-  description = "Name of the carts DynamoDB table"
-  value       = module.dynamodb_carts.dynamodb_table_id
+  value = module.dynamodb_carts.dynamodb_table_id
 }
 
 output "carts_dynamodb_policy_arn" {
-  description = "ARN of IAM policy to access carts DynamoDB table"
-  value       = aws_iam_policy.carts_dynamo.arn
+  value = aws_iam_policy.carts_dynamo.arn
 }
 
 output "mq_broker_id" {
-  value       = aws_mq_broker.mq.id
-  description = "AmazonMQ broker ID"
+  value = aws_mq_broker.mq.id
 }
 
 output "mq_broker_arn" {
-  value       = aws_mq_broker.mq.arn
-  description = "AmazonMQ broker ARN"
+  value = aws_mq_broker.mq.arn
 }
 
 output "mq_broker_endpoint" {
-  value       = aws_mq_broker.mq.instances[0].endpoints[0]
-  description = "AmazonMQ broker endpoint"
+  value = aws_mq_broker.mq.instances[0].endpoints[0]
 }
 
 output "mq_password" {
-  value       = random_password.mq_password.result
-  sensitive   = true
-  description = "AmazonMQ Admin password."
+  value     = random_password.mq_password.result
+  sensitive = true
 }
 
 output "mq_user" {
-  value       = local.mq_default_user
-  description = "AmazonMQ Admin user"
+  value = local.mq_default_user
 }
 
 output "checkout_elasticache_arn" {
-  value       = module.checkout_elasticache_redis.arn
-  description = "Checkout Redis ElastiCache ARN."
+  value = module.checkout_elasticache_redis.arn
 }
 
 output "checkout_elasticache_primary_endpoint" {
-  value       = module.checkout_elasticache_redis.endpoint
-  description = "Checkout Redis hostname"
+  value = module.checkout_elasticache_redis.endpoint
 }
 
 output "checkout_elasticache_reader_endpoint" {
-  value       = module.checkout_elasticache_redis.reader_endpoint_address
-  description = "Checkout Redis reader hostname"
+  value = module.checkout_elasticache_redis.reader_endpoint_address
 }
 
 output "checkout_elasticache_port" {
-  value       = module.checkout_elasticache_redis.port
-  description = "Checkout Redis port"
+  value = module.checkout_elasticache_redis.port
 }
 
 output "catalog_opensearch_endpoint" {
-  description = "Endpoint for the catalog OpenSearch domain"
-  value       = module.catalog_opensearch.domain_endpoint
+  value = module.catalog_opensearch.domain_endpoint
 }
 
 output "catalog_opensearch_master_username" {
-  description = "Master username for the catalog OpenSearch domain"
-  value       = local.catalog_search_username
-  sensitive   = true
+  value     = local.catalog_search_username
+  sensitive = true
 }
 
 output "catalog_opensearch_master_password" {
-  description = "Master password for the catalog OpenSearch domain"
-  value       = random_string.catalog_opensearch_master.result
-  sensitive   = true
+  value     = random_string.catalog_opensearch_master.result
+  sensitive = true
 }

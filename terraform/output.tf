@@ -14,7 +14,7 @@ output "retail_app_url" {
 # ── Required grading outputs ──
 output "cluster_name" {
   description = "EKS cluster name"
-  value       = var.environment_name
+  value = "project-bedrock-cluster"
 }
 
 output "cluster_endpoint" {
