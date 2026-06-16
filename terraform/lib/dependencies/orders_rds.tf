@@ -1,4 +1,4 @@
-﻿resource "aws_db_subnet_group" "orders" {
+resource "aws_db_subnet_group" "orders" {
   name       = "bedrock-orders"
   subnet_ids = var.subnet_ids
   tags       = var.tags
