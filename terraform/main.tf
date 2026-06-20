@@ -41,7 +41,8 @@ module "dependencies" {
 
   allowed_security_group_ids = [
     aws_security_group.catalog.id,
-    aws_security_group.orders.id
+    aws_security_group.orders.id,
+    module.retail_app_eks.node_security_group_id
   ]
 
   catalog_security_group_id  = local.security_groups_active ? aws_security_group.catalog.id : module.retail_app_eks.node_security_group_id
