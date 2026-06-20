@@ -1,4 +1,4 @@
-resource "aws_db_subnet_group" "orders" {
+﻿resource "aws_db_subnet_group" "orders" {
   name       = "bedrock-orders"
   subnet_ids = var.subnet_ids
   tags       = var.tags
@@ -13,7 +13,7 @@ resource "aws_security_group" "orders_rds" {
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    security_groups = ["sg-091d049131a4da734"]
+    security_groups = var.allowed_security_group_ids
   }
 
   egress {
