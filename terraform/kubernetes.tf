@@ -36,6 +36,19 @@ module "container_images" {
   container_image_overrides = var.container_image_overrides
 }
 
+resource "kubernetes_namespace_v1" "retail_app" {
+  depends_on = [
+    data.kubernetes_nodes.vpc_ready_nodes
+  ]
+
+  metadata {
+    name = "retail-app"
+    labels = {
+      project = "karatu-2025-capstone"
+    }
+  }
+}
+
 resource "null_resource" "cluster_blocker" {
   triggers = {
     "blocker" = module.retail_app_eks.cluster_blocker_id
